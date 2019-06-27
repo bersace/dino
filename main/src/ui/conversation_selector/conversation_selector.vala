@@ -149,9 +149,8 @@ public class ConversationSelector : ListBox {
         if (cr1 != null && cr2 != null) {
             Conversation c1 = cr1.conversation;
             Conversation c2 = cr2.conversation;
-            if (c1.last_active == null) return -1;
-            if (c2.last_active == null) return 1;
-            int comp = c2.last_active.compare(c1.last_active);
+            // Compare type, making room first.
+            int comp = c2.type_ - c1.type_;
             if (comp == 0) {
                 return Util.get_conversation_display_name(stream_interactor, c1)
                     .collate(Util.get_conversation_display_name(stream_interactor, c2));
